@@ -1,4 +1,4 @@
-[![Build Docker Image](https://github.com/josearias210/tuya-mqtt-control/actions/workflows/docker-build.yml/badge.svg)](https://github.com/josearias210/tuya-mqtt-control/actions/workflows/docker-build.yml)
+[![Build and Release Docker Image](https://github.com/josearias210/tuya-mqtt-control/actions/workflows/docker-build-release.yml/badge.svg)](https://github.com/josearias210/tuya-mqtt-control/actions/workflows/docker-build-release.yml)
 
 # Tuya MQTT Control
 
