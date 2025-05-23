@@ -1,0 +1,21 @@
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2.0
+    container_name: mosquitto
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
+    restart: unless-stopped
+
+  tuya_control:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tuya_control
+    env_file:
+      - .env
+    depends_on:
+      - mosquitto
+    restart: unless-stopped
