@@ -1,0 +1,3 @@
+tinytuya>=1.2.8
+paho-mqtt>=1.6.1
+python-dotenv>=1.0.0

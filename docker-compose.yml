@@ -15,7 +15,10 @@ services:
       dockerfile: Dockerfile
     container_name: tuya_control
     env_file:
-      - .env
+      - ./src/.env
+    working_dir: /app/src
+    volumes:
+      - ./src:/app/src
     depends_on:
       - mosquitto
     restart: unless-stopped

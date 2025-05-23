@@ -11,11 +11,13 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements and install
-COPY requirements.txt .
+COPY src/requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy script and set entrypoint
-COPY src/tuya_control.py .
+# Copy all source code
+COPY src/ ./src/
+WORKDIR /app/src
+
 CMD ["python", "tuya_control.py"]
 
 LABEL org.opencontainers.image.title="tuya-mqtt-control"

@@ -39,75 +39,54 @@ Easily integrate your Tuya bulbs with any MQTT-compatible home automation system
    ```
    Edit `.env` and set your Tuya device info and MQTT broker settings.
 
+   **Device configuration now uses individual environment variables for each device.**
+
+   Example for two devices:
+   ```env
+   TUYA_DEVICES_0_ID=DEVICEID1
+   TUYA_DEVICES_0_IP=192.168.1.10
+   TUYA_DEVICES_0_KEY=KEY1
+
+   TUYA_DEVICES_1_ID=DEVICEID2
+   TUYA_DEVICES_1_IP=192.168.1.11
+   TUYA_DEVICES_1_KEY=KEY2
+   ```
+   Add more devices by incrementing the index (0, 1, 2, ...).
+
+   MQTT broker configuration:
+   ```env
+   MQTT_BROKER=mosquitto
+   MQTT_PORT=1883
+   ```
+
 ## Usage
 
 Start the service:
 ```bash
-python tuya_control.py
+python src/tuya_control.py
 ```
 
 The service will connect to your MQTT broker and listen for commands.
 
-## MQTT Topics
+## Docker Compose
 
-- `/device/<device_id>/light/on` — Turn bulb ON (payload ignored)
-- `/device/<device_id>/light/off` — Turn bulb OFF (payload ignored)
-- `/device/<device_id>/light/brightness` — Set brightness (payload: 0-255)
-- `/device/<device_id>/light/color` — Set color (payload: color name or JSON with RGB/HSV)
-- `/device/<device_id>/light/status/request` — Request status update (payload ignored)
-- `/device/<device_id>/light/status` — Device publishes status here (JSON)
+A `docker-compose.yml` is provided for easy deployment. Make sure to set up your `.env` file as described above.
 
-## Environment Variables
-
-The application uses a `.env` file for configuration. Example variables:
-
-```
-TUYA_DEVICES=[{"id": "dev1", "ip": "192.168.1.10", "key": "abc123"}]
-MQTT_BROKER=mosquitto
-MQTT_PORT=1883
-```
-
-See `.env.example` for a template you can copy and edit.
-
-## Example MQTT Commands
-
-Turn on a bulb:
+To build and run with Docker Compose:
 ```bash
-mosquitto_pub -t "/device/dev1/light/on" -m ""
+docker compose up --build
 ```
 
-Set brightness:
-```bash
-mosquitto_pub -t "/device/dev1/light/brightness" -m "128"
-```
+## Testing
 
-Set color (red):
-```bash
-mosquitto_pub -t "/device/dev1/light/color" -m "red"
-```
-
-Set color (RGB):
-```bash
-mosquitto_pub -t "/device/dev1/light/color" -m '{"r":255,"g":100,"b":50}'
-```
-
-## Running Tests
-
-To run the test suite, make sure you have all dependencies installed (see [Installation](#installation)).
-
-You can run the tests using Python's built-in unittest (default):
-
-**With unittest:**
+To run all tests:
 ```bash
 python -m unittest discover tests
 ```
 
-If you prefer to use pytest, first install it with:
+Or with pytest (install it first):
 ```bash
 pip install pytest
-```
-Then run:
-```bash
 pytest
 ```
 

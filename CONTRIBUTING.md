@@ -4,7 +4,7 @@ Thank you for considering contributing to this project! We welcome pull requests
 
 ## How to Contribute
 
-1. **Fork the repository** and create your branch from `main`.
+1. **Fork the repository** and create your branch from `master`.
 2. **Write clear, concise commit messages**.
 3. **Test your code** before submitting a pull request.
 4. **Open a pull request** with a clear description of your changes.
@@ -12,7 +12,7 @@ Thank you for considering contributing to this project! We welcome pull requests
 
 ## Reporting Issues
 
-- Please use the [GitHub Issues](https://github.com/yourusername/tuya-mqtt-control/issues) to report bugs or request features.
+- Please use the [GitHub Issues](https://github.com/josearias210/tuya-mqtt-control/issues) to report bugs or request features.
 - Include as much detail as possible (logs, environment, steps to reproduce).
 
 ## Pull Request Guidelines
