@@ -20,7 +20,7 @@ WORKDIR /app/src
 
 CMD ["python", "tuya_control.py"]
 
-LABEL org.opencontainers.image.title="tuya-mqtt-control"
+LABEL org.opencontainers.image.title="app-tuya-mqtt-control"
 LABEL org.opencontainers.image.description="A simple Python service to control Tuya Smart Bulbs via MQTT. Multi-arch Docker image for x64 and Raspberry Pi 5 (arm64)."
 LABEL org.opencontainers.image.authors="Antonio Arias <https://programemos.net>"
 LABEL org.opencontainers.image.licenses="MIT"
