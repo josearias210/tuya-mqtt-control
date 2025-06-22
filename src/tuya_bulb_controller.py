@@ -29,8 +29,20 @@ class TuyaBulbController:
 
     def set_brightness(self, device_id: str, brightness: int) -> None:
         dev = self.get_device(device_id)
-        dev.set_brightness(brightness)
-        logging.info(f"Bulb {device_id} brightness set to {brightness}.")
+
+        if dev.bulb_type == "A":
+            # Mapea 0-100% a 25-255
+            brightness_value = int(25 + (brightness / 100) * (255 - 25))
+        elif dev.bulb_type == "B":
+            # Mapea 0-100% a 10-1000
+            brightness_value = int(10 + (brightness / 100) * (1000 - 10))
+        else:
+            brightness_value = int(brightness)
+
+        dev.set_brightness(brightness_value)
+
+
+        logging.info(f"Bulb {device_id} brightness set to {brightness_value}.")
 
     def set_color(self, device_id: str, color: str) -> None:
         dev = self.get_device(device_id)
